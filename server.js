@@ -9,7 +9,7 @@ var chokidar = require('chokidar');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 var compiler = webpack(config);
-var index = require('fs').readFileSync(__dirname + '/index.html');
+//var index = require('fs').readFileSync(__dirname + '/index.html');
 
 var app = express();
 
@@ -24,9 +24,15 @@ app.use(function(req, res, next) {
   require('./server/app')(req, res, next);
 });
 
-app.get('/', function(req, res) {
-  res.end(index);
+
+app.use('/', express.static(__dirname + '/dist'));
+
+app.get('*', function(req, res) {
+  res.sendFile(__dirname + '/dist/' + 'index.html');
 });
+
+
+
 
 
 // Do "hot-reloading" of express stuff on the server

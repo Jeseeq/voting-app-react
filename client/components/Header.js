@@ -16,13 +16,19 @@ export default class Header extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-          <NavItem eventKey={1} href="#">Home</NavItem>
+
+          <LinkContainer to={{pathname: '/'}} onlyActiveOnIndex={true}>
+            <NavItem eventKey={1}>Home</NavItem>
+          </LinkContainer>
+
           <LinkContainer to={{pathname: '/polls'}}>
             <NavItem eventKey={2}>My polls</NavItem>
           </LinkContainer>
+
           <LinkContainer to={{pathname: '/newpoll'}}>
             <NavItem eventKey={3}>New poll</NavItem>
           </LinkContainer>
+
           <NavDropdown eventKey={4} title="Username" id="basic-nav-dropdown">
             <MenuItem eventKey={4.1}>Profile</MenuItem>
             <MenuItem divider />

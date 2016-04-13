@@ -6,8 +6,8 @@ export default class DetailPage extends Component {
   render(){
     return (
       <div>
-        <Header />    
-        <Detail />
+        <Header />
+        <Detail id={this.props.params.id} />
       </div>
     );
   }
