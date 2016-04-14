@@ -12,11 +12,11 @@ import Detail from './pages/DetailPage';
 import MyPolls from './pages/MyPollsPage';
 import NewPoll from './pages/NewPollPage';
 
+import storeConfig from './store';
 
 
 
-
-var store = require('./store')(window.initialStoreData);
+const store = storeConfig();
 
 window.dev = { store };
 

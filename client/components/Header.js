@@ -2,16 +2,17 @@ import React , {Component} from 'react';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 
 import {LinkContainer} from 'react-router-bootstrap';
-
+import {Link} from 'react-router';
 
 export default class Header extends Component {
   render(){
     return (
       <Navbar>
         <Navbar.Header>
-          <Navbar.Brand>
-            <a href="#">Voting App</a>
-          </Navbar.Brand>
+            <Navbar.Brand>
+              <Link to="/">Voting App</Link>
+            </Navbar.Brand>
+
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
