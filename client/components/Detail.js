@@ -18,8 +18,11 @@ export default class Detail extends Component {
     }
     else if (error) {
       return (
-        <div className="alert alert-danger">There were problems loading polls</div>
+        <div className="alert alert-danger">There were problems loading poll{error.message}</div>
       );
+    }
+    else if(!poll){
+      return(<span />)
     }
     return (
       <div>
