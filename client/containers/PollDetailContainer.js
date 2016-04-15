@@ -1,27 +1,30 @@
 import {connect} from 'react-redux';
 import {fetchPoll, fetchPollFailure, fetchPollSuccess} from '../actions/polls';
 
-import {Detail} from '../components/Detail';
+import Detail from '../components/Detail';
 
 
-const mapStateToProps = (state) =>{
-
+function mapStateToProps(state, ownProps) {
+  return{
+    activePoll: state.polls.activePoll,
+    pollId: ownProps.id
+  };
 };
 
-const mapDispatchToProps = (dispatch) =>{
-  return{
+const mapDispatchToProps = (dispatch) => {
+  return {
     fetchPoll: (id) => {
       dispatch(fetchPoll(id)).then((response) =>{
-        !response.error ? dispatch(fetchPollSuccess(response.data)) :
-                          dispatch(fetchPollFailure(response.error));
+        !response.error ? dispatch(fetchPollSuccess(response.payload)) :
+                          dispatch(fetchPollFailure(response.payload));
       });
     }
   };
 };
 
 
-const PollDetailContainer = connect({
+const PollDetailContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-})(Detail);
+)(Detail);
 export default PollDetailContainer;
