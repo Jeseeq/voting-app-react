@@ -1,10 +1,14 @@
 import axios from 'axios';
 
-export const FETCH_POLLS = 'FETCH_POLL';
+export const FETCH_POLLS = 'FETCH_POLLS';
 export const FETCH_POLLS_SUCCESS = 'FETCH_POLLS_SUCCESS';
 export const FETCH_POLLS_FAILURE = 'FETCH_POLLS_FAILURE';
 export const RESET_POLLS = 'RESET_POLLS';
 
+export const FETCH_POLL = 'FETCH_POLL';
+export const FETCH_POLL_SUCCESS = 'FETCH_POLL_SUCCESS';
+export const FETCH_POLL_FAILURE = 'FETCH_POLL_FAILURE';
+export const RESET_POLL = 'RESET_POLL';
 
 
 
@@ -25,8 +29,6 @@ export function fetchPolls() {
     payload: request
   };
 }
-
-
 export function fetchPollsSuccess(polls) {
   return{
     type: FETCH_POLLS_SUCCESS,
@@ -43,5 +45,36 @@ export function fetchPollsFailure(error) {
 export function resetPolls(){
   return{
     type: RESET_POLLS
+  };
+}
+
+// Single poll actions
+
+export function fetchPoll(id) {
+  const request = axios({
+    method: 'get',
+    url: `${ROOT_URL}/poll/${id}`,
+    headers: []
+  });
+  return{
+    type: FETCH_POLL,
+    payload: request
+  };
+}
+export function fetchPollSuccess(poll) {
+  return{
+    type: FETCH_POLL_SUCCESS,
+    payload: poll
+  };
+}
+export function fetchPollFailure(error) {
+  return{
+    type: FETCH_POLL_FAILURE,
+    payload: error
+  };
+}
+export function resetPoll() {
+  return{
+    type: RESET_POLL
   };
 }
