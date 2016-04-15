@@ -22,7 +22,7 @@ export default class Detail extends Component {
       );
     }
     else if(!poll){
-      return(<span />)
+      return(<span />);
     }
     return (
       <div>
