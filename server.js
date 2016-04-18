@@ -10,7 +10,6 @@ var chokidar = require('chokidar');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 var compiler = webpack(config);
-
 var app = express();
 var db = require('./server/db');
 db.connect();
@@ -47,6 +46,9 @@ compiler.plugin('done', function() {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
+var authentication = require('./server/middleware/authentication');
+app.use(authentication.decodeToken);
 
 // routes
 var users = require('./server/api/users');

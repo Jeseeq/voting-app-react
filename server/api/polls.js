@@ -32,6 +32,7 @@ var data = [
 
 
 router.get('/polls', (req, res) => {
+  console.log(req.user);
   res.send(data);
 });
 
