@@ -12,6 +12,7 @@ export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const LOGOUT_USER_SUCCESS = 'LOGOUT_USER_SUCCESS';
 export const LOGOUT_USER_FAILURE = 'LOGOUT_USER_FAILURE';
+export const GET_CURRENT_USER = 'GET_CURRENT_USER'
 
 
 
@@ -91,5 +92,15 @@ export function logoutUserSuccess(message) {
 export function resetUser() {
   return {
     type: RESET_USER
+  };
+}
+export function getCurrentUser() {
+  const request = axios({
+    method: 'get',
+    url: `${ROOT_URL}/users/get/user/from/cookie`
+  });
+  return{
+    type: GET_CURRENT_USER,
+    payload: request
   };
 }

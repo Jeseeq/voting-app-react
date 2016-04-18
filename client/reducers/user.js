@@ -1,6 +1,6 @@
 import {SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, RESET_USER,
   SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, LOGOUT_USER,
-  LOGOUT_USER_SUCCESS, LOGOUT_USER_FAILURE } from '../actions/users';
+  LOGOUT_USER_SUCCESS, LOGOUT_USER_FAILURE, GET_CURRENT_USER } from '../actions/users';
 
 const INITIAL_STATE = {
   user: null,
@@ -92,6 +92,10 @@ export default function(state = INITIAL_STATE, action) {
       error: error,
       loading: false
     };
+  case GET_CURRENT_USER:
+    return {
+      ...state
+    }
   default:
     return state;
 

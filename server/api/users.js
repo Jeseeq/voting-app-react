@@ -155,40 +155,17 @@ router.post('/users/logout', function(req, res) {
   }
 });
 
-router.get('/user/from/token', function(req, res) {
+router.get('/users/get/user/from/cookie', function(req, res) {
 
-  // check for token
-
-  var token = req.body.token || req.query.token
-                             || req.headers['x-access-token'];
-
-  if (!token){
-    return res.status(401).json({
-      message: 'Must passs token'
+  // check for user wich come from moddleware
+  if (req.user) {
+    return res.json({
+      user: req.user
     });
   }
-  // Otherwise decode token
-  jwt.verify(token, process.env.JWT_SECRET, function(err, user) {
-    if (err) throw err;
-
-    User.findById({
-      _id: user._id
-    }, function(err, user) {
-
-      if (err) throw err;
-
-      user = utils.getCleanUser(user);
-
-      res.json({
-        user: user,
-        token: token
-      });
-
-    });
+  res.json({
+    message: 'You better login =)'
   });
-
-
-
 });
 
 
