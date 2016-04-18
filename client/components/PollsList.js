@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import {ListGroup, ListGroupItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
+import Spinner from 'react-spinner';
 
 export default class PollsList extends Component {
   componentWillMount() {
@@ -12,6 +13,7 @@ export default class PollsList extends Component {
 
     if (loading){
       return (
+        // <Spinner />
         <div className="alert alert-success">Loading.....</div>
        );
     }

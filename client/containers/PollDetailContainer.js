@@ -15,7 +15,7 @@ function mapStateToProps(state, ownProps) {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPoll: (id) => {
-      dispatch(fetchPoll(id)).then((response) =>{
+      dispatch(fetchPoll(id)).then((response) => {
         !response.error ? dispatch(fetchPollSuccess(response.payload)) :
                           dispatch(fetchPollFailure(response.payload));
       });

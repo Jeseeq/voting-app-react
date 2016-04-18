@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage';
 import Detail from './pages/DetailPage';
 import MyPolls from './pages/MyPollsPage';
 import NewPoll from './pages/NewPollPage';
+import Login from './pages/Login';
 
 import storeConfig from './store';
 
@@ -28,6 +29,7 @@ ReactDOM.render(
         <Route path='/details/:id' component={Detail}/>
         <Route path='/polls' component={MyPolls}/>
         <Route path='/newpoll' component={NewPoll}/>
+        <Route path='/login' component={Login}/>
 
       </Route>
     </Router>
