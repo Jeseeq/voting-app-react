@@ -87,9 +87,14 @@ router.post('/users/signup', function(req, res) {
       var token = utils.generateToken(user);
       user = utils.getCleanUser(user);
 
-      res.json({
+      res.cookie('auth_token', token, {
+        maxAge: 60*60*24,
+        path: '/',
+        httpOnly: true
+
+      }).json({
         user: user,
-        token: token
+        //token: token
       });
 
     });
@@ -124,14 +129,30 @@ router.post('/users/signin', function(req, res) {
       var token = utils.generateToken(user);
       user = utils.getCleanUser(user);
 
-      res.json({
+      res.cookie('auth_token', token, {
+        maxAge: 60*60*24,
+        path: '/',
+        httpOnly: true
+      }).json({
         user: user,
-        token: token
+        //token: token
       });
 
     });
 
   });
+});
+
+router.post('/users/logout', function(req, res) {
+  if (req.user){
+    res.cookie('auth_token', false, {
+      maxAge: 1,
+      path: '/',
+    });
+    res.send('You have successfully logged out');
+  }else {
+    res.status(400).send('There is no active session');
+  }
 });
 
 router.get('/user/from/token', function(req, res) {
@@ -147,7 +168,7 @@ router.get('/user/from/token', function(req, res) {
     });
   }
   // Otherwise decode token
-  jwt.verify(token, 'secret string', function(err, user) {
+  jwt.verify(token, process.env.JWT_SECRET, function(err, user) {
     if (err) throw err;
 
     User.findById({

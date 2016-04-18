@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var Poll = require('../models/Poll');
+
 var data = [
   {
     id: 1,
@@ -31,7 +33,29 @@ var data = [
 
 
 
+router.post('/polls', function(req, res) {
+  if (!req.user){
+    return res.status(401).send('Must authenticate to creacte a new poll');
+  }
+  var body = req.body;
+  var poll = new Poll({
+    question: body.question,
+    choices: body.choices,
+    totalVotes: 0,
+    user_id: req.user._id
+  });
+
+  poll.save(function(err, poll) {
+    if (err) throw err;
+
+    res.json(poll);
+
+  });
+
+});
+
 router.get('/polls', (req, res) => {
+
   console.log(req.user);
   res.send(data);
 });

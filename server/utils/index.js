@@ -11,7 +11,7 @@ function generateToken(user){
     avatar: user.avatar
   };
 
-  token = jwt.sign(u, 'secret string', {
+  token = jwt.sign(u, process.env.JWT_SECRET, {
     expiresIn: 60 * 60 * 24 // 24 hours
   });
   return token;
