@@ -24,8 +24,8 @@ export default class PollsList extends Component {
     <ListGroup>
       {polls.map(function(item) {
         return(
-          <LinkContainer key={item.id} to={{pathname: '/details/' + item.id} }>
-            <ListGroupItem >{item.title}</ListGroupItem>
+          <LinkContainer key={item._id} to={{pathname: '/details/' + item._id}}>
+            <ListGroupItem >{item.question}</ListGroupItem>
           </LinkContainer>
       );
       })}

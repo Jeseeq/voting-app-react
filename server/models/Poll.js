@@ -6,6 +6,7 @@ var pollSchema = new mongoose.Schema({
   choices: Object,
   totalVotes: Number,
   user_id: String,
+  author: String
 
 });
 

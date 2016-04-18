@@ -1,5 +1,6 @@
 import {connect} from 'react-redux';
-import {fetchPoll, fetchPollFailure, fetchPollSuccess} from '../actions/polls';
+import {fetchPoll, fetchPollFailure, fetchPollSuccess,
+  resetPoll} from '../actions/polls';
 
 import Detail from '../components/Detail';
 
@@ -18,6 +19,9 @@ const mapDispatchToProps = (dispatch) => {
         !response.error ? dispatch(fetchPollSuccess(response.payload)) :
                           dispatch(fetchPollFailure(response.payload));
       });
+    },
+    resetMe: () => {
+      dispatch(resetPoll());
     }
   };
 };

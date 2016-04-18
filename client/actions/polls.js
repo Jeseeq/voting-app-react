@@ -53,7 +53,7 @@ export function resetPolls(){
 export function fetchPoll(id) {
   const request = axios({
     method: 'get',
-    url: `${ROOT_URL}/poll/${id}`,
+    url: `${ROOT_URL}/polls/${id}`,
     headers: []
   });
   return{

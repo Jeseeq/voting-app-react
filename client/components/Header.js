@@ -5,7 +5,13 @@ import {LinkContainer} from 'react-router-bootstrap';
 import {Link} from 'react-router';
 
 export default class Header extends Component {
+
+  handleLogout(e) {
+    e.preventDefault();
+    this.props.logout();
+  }
   render(){
+    const {AuthenticatedUser} = this.props;
     return (
       <Navbar>
         <Navbar.Header>
@@ -27,7 +33,7 @@ export default class Header extends Component {
             <MenuItem divider />
             <MenuItem eventKey={4.2}>Polls</MenuItem>
           </NavDropdown>
-          
+
           <LinkContainer to={{pathname: '/polls'}}>
             <NavItem eventKey={2}>Profile</NavItem>
           </LinkContainer>
@@ -36,12 +42,17 @@ export default class Header extends Component {
             <NavItem eventKey={3}>New poll</NavItem>
           </LinkContainer>
 
+          {
+            !AuthenticatedUser ?
+
           <LinkContainer to={{pathname: '/login'}}>
             <NavItem eventKey={5}>Login</NavItem>
-          </LinkContainer>
-          <LinkContainer to={{pathname: '/login'}}>
-            <NavItem eventKey={6}>Logout</NavItem>
-          </LinkContainer>
+          </LinkContainer> :
+
+            <NavItem eventKey={6} onClick={this.handleLogout.bind(this)}>
+              Logout
+            </NavItem>
+          }
         </Nav>
         </Navbar.Collapse>
       </Navbar>

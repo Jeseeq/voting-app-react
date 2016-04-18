@@ -4,6 +4,11 @@ export default class Detail extends Component {
   static contexTypes = {
     router: PropTypes.object
   };
+
+  // Reset active poll state in global state object
+  componentWillUnmount() {
+    this.props.resetMe();
+  }
   componentDidMount(){
     this.props.fetchPoll(this.props.pollId);
   }
@@ -28,7 +33,8 @@ export default class Detail extends Component {
       <div>
         <h1>Detail of voting for </h1>
         <h2>Amazing content</h2>
-        <pre>{poll.content}</pre>
+        <pre>{poll.author}</pre>
+        <pre>{poll.question}</pre>
       </div>
     );
   }
