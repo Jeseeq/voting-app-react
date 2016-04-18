@@ -4,36 +4,22 @@ require('css-modules-require-hook')({
 require('babel-register');
 
 var express = require('express');
-
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var chokidar = require('chokidar');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 var compiler = webpack(config);
-//var index = require('fs').readFileSync(__dirname + '/index.html');
 
 var app = express();
+var db = require('./server/db');
+db.connect();
 
 // Serve hot-reloading bundle to client
 app.use(require("webpack-dev-middleware")(compiler, {
   noInfo: true, publicPath: config.output.publicPath
 }));
 app.use(require("webpack-hot-middleware")(compiler));
-
-// Include server routes as a middleware
-app.use(function(req, res, next) {
-  require('./server/app')(req, res, next);
-});
-
-
-app.use('/', express.static(__dirname + '/dist'));
-
-app.get('*', function(req, res) {
-  res.sendFile(__dirname + '/dist/' + 'index.html');
-});
-
-
-
-
 
 // Do "hot-reloading" of express stuff on the server
 // Throw away cached modules and re-require next time
@@ -57,6 +43,26 @@ compiler.plugin('done', function() {
     if (/[\/\\]client[\/\\]/.test(id)) delete require.cache[id];
   });
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
+
+// routes
+var users = require('./server/api/users');
+var polls = require('./server/api/polls');
+
+app.use('/api/', polls);
+app.use('/api/', users);
+app.use('/', express.static(__dirname + '/dist'));
+
+app.get('*', function(req, res) {
+  res.sendFile(__dirname + '/dist/' + 'index.html');
+});
+
+
+
+
 
 var http = require('http');
 var server = http.createServer(app);

@@ -1,12 +1,15 @@
 var mongoose = require('mongoose');
+var timestamps = require('mongoose-timestamp');
 
-var PollSchema = new mongoose.Schema({
-  id: Number,
-  title: String,
-  // Think what to add
+var pollSchema = new mongoose.Schema({
+  question: String,
+  choices: Object,
+  totalVotes: Number,
+  user_id: String,
 
 });
 
-var Poll = mongoose.model('Poll', PollSchema);
+pollSchema.plugin(timestamps);
+var Poll = mongoose.model('Poll', pollSchema);
 
 module.exports = Poll;

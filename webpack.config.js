@@ -1,14 +1,15 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
 module.exports = {
   devtool: '#eval-source-map',
   entry: [
-    'bootstrap-loader',
-    'font-awesome-loader',
     'webpack-hot-middleware/client',
-    './client/app.js'
+    'bootstrap-loader/extractStyles',
+    './client/app.js',
+    'font-awesome-loader',
   ],
   output: {
     path: __dirname + '/dist',
@@ -19,6 +20,7 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin("./main.css"),
   ],
   resolve: {
     extensions: ['', '.js'],
@@ -50,24 +52,8 @@ module.exports = {
           },
         }
       },
-
-      {
-        test: /\.css$/,
-        loaders: [
-          'style',
-          'css?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]',
-          'postcss',
-        ],
-      },
-      {
-        test: /\.scss$/,
-        loaders: [
-          'style',
-          'css?modules&importLoaders=2&localIdentName=[name]__[local]__[hash:base64:5]',
-          'postcss',
-          'sass',
-        ],
-      },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css!postcss') },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass') },
       {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: "url?limit=10000"
