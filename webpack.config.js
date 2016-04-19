@@ -6,9 +6,9 @@ process.env.NODE_ENV = process.env.NODE_ENV || "development";
 module.exports = {
   devtool: '#eval-source-map',
   entry: [
+    './client/app.js',
     'webpack-hot-middleware/client',
     'bootstrap-loader/extractStyles',
-    './client/app.js',
     'font-awesome-loader',
   ],
   output: {

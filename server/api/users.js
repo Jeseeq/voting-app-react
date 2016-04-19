@@ -115,15 +115,15 @@ router.post('/users/signin', function(req, res) {
 
     if (!user){
       return res.status(404).json({
-        error: true,
-        message: 'Username is wrong'
+        _error: 'Login failed',
+        username: 'Username is wrong'
       });
     }
     bcrypt.compare(req.body.password, user.password, function(err, valid) {
       if (!valid){
         return res.status(404).json({
-          error: true,
-          message: 'Password is wrong'
+          _error: 'Login failed',
+          password: 'Password is wrong'
         });
       }
       var token = utils.generateToken(user);

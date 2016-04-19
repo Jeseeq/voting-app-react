@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-
+import { browserHistory } from 'react-router';
 import {logoutUser, logoutUserSuccess, logoutUserFailure, resetUser
 } from '../actions/users';
 
@@ -10,7 +10,7 @@ const mapStateToProps = (state) =>{
   return{
     AuthenticatedUser: state.user.status === 'authenticated' ?
                                               state.user.user : null,
-    user: state.user
+    user: state.user.user
   };
 };
 
@@ -21,9 +21,12 @@ const mapDispatchToProps = (dispatch) =>{
         if (!response.error) {
           dispatch(logoutUserSuccess(response.payload));
           dispatch(resetUser());
+          browserHistory.push('/');
         }
         dispatch(logoutUserFailure(response.payload));
         dispatch(resetUser());
+        browserHistory.push('/');
+
       });
     },
   };

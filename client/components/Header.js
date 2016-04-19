@@ -11,7 +11,7 @@ export default class Header extends Component {
     this.props.logout();
   }
   render(){
-    const {AuthenticatedUser} = this.props;
+    const {AuthenticatedUser, user} = this.props;
     return (
       <Navbar>
         <Navbar.Header>
@@ -22,10 +22,10 @@ export default class Header extends Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav pullRight>
 
-          <LinkContainer to={{pathname: '/'}} onlyActiveOnIndex={true}>
-            <NavItem eventKey={1}>Home</NavItem>
+          <Nav pullRight>
+          <LinkContainer active={false} to={{pathname: '/'}}>
+            <NavItem  eventKey={1}>Home</NavItem>
           </LinkContainer>
 
           <NavDropdown eventKey={4} title="Browse" id="basic-nav-dropdown">
@@ -36,16 +36,16 @@ export default class Header extends Component {
 
           {AuthenticatedUser ?
           <LinkContainer to={{pathname: '/polls'}}>
-            <NavItem eventKey={2}>Profile</NavItem>
+            <NavItem eventKey={2}><i className="fa fa-user"/> {user.username}</NavItem>
           </LinkContainer>
-          : null
+          : <span />
           }
 
           {AuthenticatedUser ?
           <LinkContainer to={{pathname: '/newpoll'}}>
-            <NavItem eventKey={3}>New poll</NavItem>
+            <NavItem eventKey={3}><i className="fa fa-plus"/> New poll</NavItem>
           </LinkContainer>
-          : null
+          : <span />
           }
 
           {

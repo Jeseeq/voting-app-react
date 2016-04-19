@@ -33,7 +33,7 @@ const userCheck = () =>{
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component ={App} onEnter={userCheck}>
+      <Route path='/' onEnter={userCheck} component ={App}>
         <IndexRoute  component={HomePage}/>
         <Route path='/details/:id' component={Detail}/>
         <Route path='/polls' component={MyPolls}/>
