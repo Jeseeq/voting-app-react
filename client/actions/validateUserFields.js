@@ -24,7 +24,7 @@ export function validateUserFields(values) {
 
 export function validataUserFieldsFailure(error) {
   return{
-    type: VALIDATE_USER_FIELDS_SUCCESS,
+    type: VALIDATE_USER_FIELDS_FAILURE,
     payload: error
   };
 };

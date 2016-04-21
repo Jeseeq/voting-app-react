@@ -1,7 +1,11 @@
-import {connect} from 'react-redux';
-import {fetchPoll, fetchPollFailure, fetchPollSuccess,
-  resetPoll} from '../actions/polls';
+import {
+  fetchPoll,
+  fetchPollFailure,
+  fetchPollSuccess,
+  resetPoll
+} from '../actions/polls';
 
+import {connect} from 'react-redux';
 import Detail from '../components/Detail';
 
 

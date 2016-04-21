@@ -1,6 +1,10 @@
 import {connect} from 'react-redux';
 import { browserHistory } from 'react-router';
-import {logoutUser, logoutUserSuccess, logoutUserFailure, resetUser
+import {
+  logoutUser,
+  logoutUserSuccess,
+  logoutUserFailure,
+  resetUser
 } from '../actions/users';
 
 
@@ -8,8 +12,7 @@ import Header from '../components/Header';
 
 const mapStateToProps = (state) =>{
   return{
-    AuthenticatedUser: state.user.status === 'authenticated' ?
-                                              state.user.user : null,
+    AuthenticatedUser: state.user.status === 'authenticated' ? state.user.user : null,
     user: state.user.user
   };
 };

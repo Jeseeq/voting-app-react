@@ -1,7 +1,15 @@
-import {signUpUser, signUpUserSuccess,
-   signUpUserFailure} from '../actions/users';
-import {validataUserFieldsFailure, validataUserFieldsSuccess,
-   validateUserFields} from '../actions/validateUserFields';
+import {
+  signUpUser,
+  signUpUserSuccess,
+  signUpUserFailure
+} from '../actions/users';
+
+import {
+  validataUserFieldsFailure,
+  validataUserFieldsSuccess,
+  validateUserFields,
+  restValidateUserFields
+} from '../actions/validateUserFields';
 
 import {reduxForm} from 'redux-form';
 import SignupForm from '../components/SignupForm';
@@ -71,7 +79,8 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
   return{
-    signUp: validateAndSignup
+    signUp: validateAndSignup,
+    resetMe: () => dispatch(restValidateUserFields())
   };
 };
 

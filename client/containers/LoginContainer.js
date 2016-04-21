@@ -1,5 +1,8 @@
-import {signInUser, signInUserSuccess,
-  signInUserFailure} from '../actions/users';
+import {
+  signInUser,
+  signInUserSuccess,
+  signInUserFailure
+} from '../actions/users';
 
 import {reduxForm} from 'redux-form';
 import LoginForm from '../components/LoginForm';

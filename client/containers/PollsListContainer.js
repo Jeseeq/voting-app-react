@@ -1,7 +1,10 @@
-import {connect} from 'react-redux';
-import {fetchPolls, fetchPollsFailure,
-                    fetchPollsSuccess} from '../actions/polls';
+import {
+  fetchPolls,
+  fetchPollsFailure,
+  fetchPollsSuccess
+} from '../actions/polls';
 
+import {connect} from 'react-redux';
 import PollsList from '../components/PollsList';
 
 

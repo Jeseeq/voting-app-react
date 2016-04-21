@@ -1,6 +1,16 @@
-import {SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, RESET_USER,
-  SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE, LOGOUT_USER,
-  LOGOUT_USER_SUCCESS, LOGOUT_USER_FAILURE, GET_CURRENT_USER } from '../actions/users';
+import {
+   SIGNIN_USER,
+   SIGNIN_USER_SUCCESS,
+   SIGNIN_USER_FAILURE,
+   RESET_USER,
+   SIGNUP_USER,
+   SIGNUP_USER_SUCCESS,
+   SIGNUP_USER_FAILURE,
+   LOGOUT_USER,
+   LOGOUT_USER_SUCCESS,
+   LOGOUT_USER_FAILURE,
+   GET_CURRENT_USER
+} from '../actions/users';
 
 const INITIAL_STATE = {
   user: null,
@@ -16,7 +26,13 @@ export default function(state = INITIAL_STATE, action) {
 
   switch (action.type) {
   case SIGNIN_USER:
-    return {...state, user: null, status: 'signin', error: null, loading: true};
+    return {
+      ...state,
+      user: null,
+      status: 'signin',
+      error: null,
+      loading: true
+    };
   case SIGNIN_USER_SUCCESS:
     return {
       ...state,
@@ -95,7 +111,7 @@ export default function(state = INITIAL_STATE, action) {
   case GET_CURRENT_USER:
     return {
       ...state
-    }
+    };
   default:
     return state;
 

@@ -6,25 +6,33 @@ import s from './form.css';
 export default class LoginForm extends Component {
 
   static contextTypes = {
-    router: PropTypes.object
+    router: PropTypes.object,
+    store: PropTypes.object,
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user.status === 'authenticated' && !nextProps.user.error
-                                                  && !nextProps.user.loading){
-      this.context.router.push('/');
+    if (nextProps.user.status === 'authenticated' && !nextProps.user.error && !nextProps.user.loading){
+     // lets show redirect if exist
+      try {
+        const redirect = this.props.location.query.redirect;
+        this.context.router.replace(redirect);
+        console.log(redirect);
+      } catch (err){
+        console.log(err);
+        this.context.router.replace('/');
+      }
     }
   }
 
   render(){
-    const {fields: { username, password }, handleSubmit} = this.props;
+    const {fields: { username, password }, handleSubmit, submitting} = this.props;
 
     return(
       <div className="container form-container">
         <h1 className="text-center">Sign into account</h1>
         <form onSubmit={handleSubmit(this.props.signIn.bind(this))}>
 
-          <div className={`form-group ${username.touched && username.error  ? 'has-error' : ''}`}>
+          <div className={`form-group ${username.touched && username.error ? 'has-error' : ''}`}>
             <label htmlFor="username" className="control-label">Username</label>
             <input
               id="username"
@@ -49,7 +57,10 @@ export default class LoginForm extends Component {
               {password.touched ? password.error : ''}
             </div>
           </div>
-          <button type="submit" className="btn btn-primary"><i className="fa fa-paper-plane"/> Submit</button>
+          <button type="submit" className="btn btn-primary">
+            <i className={submitting ? "fa fa-spinner fa-spin" : "fa fa-paper-plane"}/>
+              Submit
+          </button>
           <Link to="/" className="btn btn-error">Cancel</Link>
         </form>
         <p>Dont have an account yet?</p>

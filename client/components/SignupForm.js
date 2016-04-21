@@ -4,10 +4,13 @@ import {Link} from 'react-router';
 
 
 export default class SignupForm extends Component {
+
   static contextTypes = {
     router: PropTypes.object
   }
-
+  componentWillUnmount(){
+    this.props.resetMe();
+  }
   componentWillReceiveProps(nextProps){
     if (nextProps.user && nextProps.user.status === 'authenticated'
                        && !nextProps.user.error && !nextProps.user.loading){
@@ -15,13 +18,15 @@ export default class SignupForm extends Component {
     }
   }
   render(){
-    const {fields: { username, email, password, confirmPassword }, handleSubmit} = this.props;
+    const {fields: { username, email, password, confirmPassword },
+                    handleSubmit, submitting } = this.props;
     return(
       <div className="container form-container">
         <h1 className="text-center">Sign up into awesomness</h1>
         <form onSubmit={handleSubmit(this.props.signUp.bind(this))}>
 
-          <div className={`form-group ${username.touched && username.error  ? 'has-error' : ''}`}>
+          <div className={`form-group ${username.touched && username.error
+                                                        ? 'has-error' : ''}`}>
             <label htmlFor="username" className="control-label">Username</label>
             <input
               id="username"
@@ -33,7 +38,8 @@ export default class SignupForm extends Component {
               {username.touched ? username.error : ''}
             </div>
           </div>
-          <div className={`form-group ${email.touched && email.error  ? 'has-error' : ''}`}>
+          <div className={`form-group ${email.touched && email.error
+                                                      ? 'has-error' : ''}`}>
             <label htmlFor="username" className="control-label">Email</label>
             <input
               id="email"
@@ -68,11 +74,14 @@ export default class SignupForm extends Component {
               {confirmPassword.touched ? confirmPassword.error : ''}
             </div>
           </div>
-          <button type="submit" className="btn btn-primary"><i className="fa fa-paper-plane"/> Submit</button>
+          <button type="submit" className="btn btn-primary">
+            <i className={submitting ? "fa fa-spinner fa-spin" :
+                                        "fa fa-paper-plane"}/>   Submit
+          </button>
           <Link to="/" className="btn btn-error">Cancel</Link>
         </form>
         <p>Already registred?</p>
-        <p><Link to={'/signin'}>Signin </Link>now</p>
+        <p><Link to={'/login'}>Login </Link>now</p>
       </div>
     );
   }
