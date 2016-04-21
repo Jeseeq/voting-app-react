@@ -6,6 +6,7 @@ require('babel-register');
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var favicon = require('serve-favicon');
 var chokidar = require('chokidar');
 var webpack = require('webpack');
 var config = require('./webpack.config');
@@ -58,6 +59,7 @@ app.use('/api/', polls);
 app.use('/api/', users);
 app.use('/', express.static(__dirname + '/dist'));
 
+app.use(favicon(__dirname + '/dist/' + 'favicon.ico'));
 app.get('*', function(req, res) {
   res.sendFile(__dirname + '/dist/' + 'index.html');
 });

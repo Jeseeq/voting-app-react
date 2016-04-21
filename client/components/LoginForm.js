@@ -49,9 +49,11 @@ export default class LoginForm extends Component {
               {password.touched ? password.error : ''}
             </div>
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary"><i className="fa fa-paper-plane"/> Submit</button>
           <Link to="/" className="btn btn-error">Cancel</Link>
         </form>
+        <p>Dont have an account yet?</p>
+        <p><Link to={'/signup'}>Signup </Link>now</p>
       </div>
     );
   }

@@ -53,6 +53,7 @@
     "redux-form": "^5.0.1",
     "redux-thunk": "^2.0.1",
     "request": "2.69.0",
+    "serve-favicon": "^2.3.0",
     "style-loader": "0.13.0",
     "validator": "^5.2.0",
     "webpack": "1.12.12",

@@ -3,7 +3,6 @@ var timestamps = require('mongoose-timestamp');
 
 var userSchema = new mongoose.Schema({
   username: String,
-  name: String,
   email: String,
   password: String,
   avatar: {

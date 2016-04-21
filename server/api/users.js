@@ -74,7 +74,6 @@ router.post('/users/signup', function(req, res) {
 
     var user = new User({
       username: body.username.trim(),
-      name: body.name.trim(),
       email: body.email.trim(),
       password: hash,
       admin: false
@@ -142,6 +141,19 @@ router.post('/users/signin', function(req, res) {
 
   });
 });
+
+
+router.post('/users/validate/fields', function(req, res) {
+  var body = req.body;
+  isUserUnique(body, function(err) {
+
+    if (err){
+      return res.status(403).json(err);
+    }
+    res.json('good');
+  });
+});
+
 
 router.post('/users/logout', function(req, res) {
   if (req.user){

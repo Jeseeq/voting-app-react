@@ -4,35 +4,6 @@ var router = express.Router();
 var Poll = require('../models/Poll');
 var User = require('../models/User');
 
-// var data = [
-//   {
-//     id: 1,
-//     title: 'Best phone',
-//     content: 'yo dawg'
-//   },
-//   {
-//     id: 2,
-//     title: 'favorite food',
-//     content: 'awesome react'
-//   },
-//   {
-//     id: 3,
-//     title: 'favorite book',
-//     content: 'foo bar'
-//   },
-//   {
-//     id: 4,
-//     title: 'favorite film',
-//     content: 'helo world'
-//   },
-//   {
-//     id: 5,
-//     title: 'favorite yo',
-//     content: 'test router'
-//   },
-// ];
-
-
 // Creacte a new poll
 router.post('/polls', function(req, res) {
   var body = req.body;
