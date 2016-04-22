@@ -5,7 +5,7 @@ import {
 } from '../actions/users';
 
 import {reduxForm} from 'redux-form';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/forms/LoginForm';
 
 // Client-side validation
 const validate = values =>{
@@ -44,7 +44,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {
     signIn: validateAndSignInUser,
   };
@@ -53,8 +53,6 @@ const mapDispatchToProps = (dispatch) => {
 export default reduxForm({
   form: 'LoginForm',
   fields: ['username', 'password'],
-  null,
-  null,
   validate
 },
   mapStateToProps,

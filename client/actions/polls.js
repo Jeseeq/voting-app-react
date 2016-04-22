@@ -10,11 +10,9 @@ export const FETCH_POLL_SUCCESS = 'FETCH_POLL_SUCCESS';
 export const FETCH_POLL_FAILURE = 'FETCH_POLL_FAILURE';
 export const RESET_POLL = 'RESET_POLL';
 
-
-
-
-
-
+export const CREATE_POLL = 'CREATE_POLL';
+export const CREATE_POLL_SUCCESS = 'CREATE_POLL_SUCCESS';
+export const CREATE_POLL_FAILURE = 'CREATE_POLL_FAILURE';
 
 const ROOT_URL = location.href.indexOf('http://192.168.1.12') > 0 ?
                                       'http://192.168.1.12:3000' : '/api';
@@ -76,5 +74,30 @@ export function fetchPollFailure(error) {
 export function resetPoll() {
   return{
     type: RESET_POLL
+  };
+}
+export function createPoll(poll) {
+  const request = axios({
+    method: 'post',
+    url: `${ROOT_URL}/polls`,
+    data: poll
+  });
+  return{
+    type: CREATE_POLL,
+    payload: request
+  };
+}
+
+export function createPollSuccess(poll) {
+  return{
+    type: CREATE_POLL_SUCCESS,
+    payload: poll
+  };
+}
+
+export function createPollFailure(error) {
+  return{
+    type: CREATE_POLL_FAILURE,
+    payload: error
   };
 }

@@ -18,15 +18,17 @@ export default class SignupForm extends Component {
     }
   }
   render(){
-    const {fields: { username, email, password, confirmPassword },
-                    handleSubmit, submitting } = this.props;
+    const {
+      fields: { username, email, password, confirmPassword },
+      handleSubmit,
+      submitting
+    } = this.props;
+
     return(
       <div className="container form-container">
         <h1 className="text-center">Sign up into awesomness</h1>
         <form onSubmit={handleSubmit(this.props.signUp.bind(this))}>
-
-          <div className={`form-group ${username.touched && username.error
-                                                        ? 'has-error' : ''}`}>
+          <div className={`form-group ${username.touched && username.error ? 'has-error' : ''}`}>
             <label htmlFor="username" className="control-label">Username</label>
             <input
               id="username"
@@ -38,8 +40,7 @@ export default class SignupForm extends Component {
               {username.touched ? username.error : ''}
             </div>
           </div>
-          <div className={`form-group ${email.touched && email.error
-                                                      ? 'has-error' : ''}`}>
+          <div className={`form-group ${email.touched && email.error ? 'has-error' : ''}`}>
             <label htmlFor="username" className="control-label">Email</label>
             <input
               id="email"
@@ -51,9 +52,10 @@ export default class SignupForm extends Component {
               {email.touched ? email.error : ''}
             </div>
           </div>
-
           <div className={`form-group ${password.touched && password.error ? 'has-error' : ''}`}>
-            <label htmlFor="password" className="control-label">Password*</label>
+            <label htmlFor="password" className="control-label">
+              Password*
+            </label>
             <input
               id="password"
               type="password"
@@ -64,7 +66,9 @@ export default class SignupForm extends Component {
             </div>
           </div>
           <div className={`form-group ${confirmPassword.touched && confirmPassword.error ? 'has-error' : ''}`}>
-            <label htmlFor="password" className="control-label">Confirm Password*</label>
+            <label htmlFor="password" className="control-label">
+              Confirm Password*
+            </label>
             <input
               id="password"
               type="password"
@@ -75,8 +79,7 @@ export default class SignupForm extends Component {
             </div>
           </div>
           <button type="submit" className="btn btn-primary">
-            <i className={submitting ? "fa fa-spinner fa-spin" :
-                                        "fa fa-paper-plane"}/>   Submit
+            <i className={submitting ? "fa fa-spinner fa-spin" : "fa fa-paper-plane"}/>   Submit
           </button>
           <Link to="/" className="btn btn-error">Cancel</Link>
         </form>

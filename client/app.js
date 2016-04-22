@@ -13,8 +13,8 @@ import HomePage from './pages/HomePage';
 import Detail from './pages/DetailPage';
 import MyPolls from './pages/MyPollsPage';
 import NewPoll from './pages/NewPollPage';
+import Signup from './pages/SignupPage';
 import Login from './containers/LoginContainer';
-import Signup from './pages/Signup';
 import RestrictedPage from './containers/misc/RestrictedPage';
 import NotFound from './containers/misc/NotFound';
 import storeConfig from './store';
@@ -48,6 +48,7 @@ ReactDOM.render(
 
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
+
         <Route path="*" component={NotFound} />
       </Route>
     </Router>

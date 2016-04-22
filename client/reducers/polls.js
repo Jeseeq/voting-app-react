@@ -7,12 +7,15 @@ import {
   FETCH_POLL_SUCCESS,
   FETCH_POLL_FAILURE,
   RESET_POLL,
+  CREATE_POLL,
+  CREATE_POLL_FAILURE,
+  CREATE_POLL_SUCCESS
 } from '../actions/polls';
 
 const INITIAL_STATE = {
   pollsList: { polls: [], error: null, loading: false },
   activePoll: { poll: null, error: null, loading: false },
-
+  newPoll: {poll: null, error: null, loading: false}
 };
 
 export default function(state = INITIAL_STATE, action) {
@@ -65,6 +68,22 @@ export default function(state = INITIAL_STATE, action) {
     return {
       ...state,
       activePoll: { poll: null, error: null, loading: false }
+    };
+  case CREATE_POLL:
+    return{
+      ...state,
+      newPoll: {...state.newPoll, loading: true}
+    };
+  case CREATE_POLL_SUCCESS:
+    return {
+      ...state,
+      newPoll: {poll: action.payload.data, loading: false, error: null}
+    };
+  case CREATE_POLL_FAILURE:
+    error = action.payload.data || {message: action.payload.message};
+    return {
+      ...state,
+      newPoll:{poll: null, loading: false, error: error}
     };
   default:
     return state;

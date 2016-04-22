@@ -13,3 +13,6 @@ export default class DetailPage extends Component {
     );
   }
 }
+DetailPage.propTypes = {
+  params: PropTypes.object
+};

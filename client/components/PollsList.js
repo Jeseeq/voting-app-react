@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 import {ListGroup, ListGroupItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import Spinner from 'react-spinner';
+import FailureAlert from './layout/FailureAlert';
+import LoadingAlert from './layout/LoadingAlert';
+
 
 export default class PollsList extends Component {
   componentWillMount() {
@@ -13,25 +15,29 @@ export default class PollsList extends Component {
 
     if (loading){
       return (
-        // <Spinner />
-        <div className="alert alert-success">Loading.....</div>
+        <LoadingAlert />
        );
     }
     else if (error) {
       return (
-        <div className="alert alert-danger">There were problems loading polls</div>
+        <FailureAlert />
       );
     }
     return(
     <ListGroup>
-      {polls.map(function(item) {
+      {polls.map((item) => {
         return(
           <LinkContainer key={item._id} to={{pathname: '/details/' + item._id}}>
             <ListGroupItem >{item.question}</ListGroupItem>
           </LinkContainer>
-      );
+        );
       })}
     </ListGroup>
     );
   }
 }
+
+PollsList.propTypes = {
+  pollsList: PropTypes.object,
+  fetchPolls: PropTypes.func,
+};

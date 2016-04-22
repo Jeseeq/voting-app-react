@@ -14,19 +14,23 @@ export default class Detail extends Component {
   }
   render(){
 
-    const {poll, loading, error} = this.props.activePoll;
+    const { poll, loading, error } = this.props.activePoll;
 
     if (loading){
       return (
-        <div className="alert alert-success">Loading.....</div>
+        <div className="alert alert-success text-center">
+          <i className="fa fa-spinner fa-spin fa-3x"/>
+        </div>
        );
     }
     else if (error) {
       return (
-        <div className="alert alert-danger">There were problems loading poll{error.message}</div>
+        <div className="alert alert-danger">
+          There were problems loading poll{error.message}
+        </div>
       );
     }
-    else if(!poll){
+    else if (!poll){
       return(<span />);
     }
     return (
@@ -39,3 +43,9 @@ export default class Detail extends Component {
     );
   }
 }
+Detail.propTypes = {
+  activePoll: PropTypes.object,
+  fetchPoll: PropTypes.func,
+  resetMe: PropTypes.func,
+  pollId: PropTypes.string
+};

@@ -11,21 +11,25 @@ export default class LoginForm extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user.status === 'authenticated' && !nextProps.user.error && !nextProps.user.loading){
+    if (nextProps.user.status === 'authenticated' && !nextProps.user.error
+        && !nextProps.user.loading){
+
      // lets show redirect if exist
       try {
         const redirect = this.props.location.query.redirect;
         this.context.router.replace(redirect);
-        console.log(redirect);
       } catch (err){
-        console.log(err);
         this.context.router.replace('/');
       }
     }
   }
 
   render(){
-    const {fields: { username, password }, handleSubmit, submitting} = this.props;
+    const {
+      fields: { username, password },
+      handleSubmit,
+      submitting
+    } = this.props;
 
     return(
       <div className="container form-container">

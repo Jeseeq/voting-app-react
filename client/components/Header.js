@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React , {Component, PropTypes} from 'react';
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 
 import {LinkContainer} from 'react-router-bootstrap';
@@ -11,14 +11,13 @@ export default class Header extends Component {
     this.props.logout();
   }
   render(){
-    const {AuthenticatedUser, user} = this.props;
+    const {authenticatedUser, user} = this.props;
     return (
       <Navbar>
         <Navbar.Header>
             <Navbar.Brand>
               <Link to="/">Voting App</Link>
             </Navbar.Brand>
-
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
@@ -35,30 +34,34 @@ export default class Header extends Component {
           </NavDropdown>
 
           {
-            AuthenticatedUser ?
+            authenticatedUser ?
             <LinkContainer to={{pathname: '/polls'}}>
-              <NavItem eventKey={2}><i className="fa fa-user"/> {user.username}</NavItem>
+              <NavItem eventKey={2}><i className="fa fa-user"/>
+                {user.username}
+              </NavItem>
             </LinkContainer>
             : null
           }
 
           {
-            AuthenticatedUser ?
+            authenticatedUser ?
             <LinkContainer to={{pathname: '/newpoll'}}>
-              <NavItem eventKey={3}><i className="fa fa-plus"/> New poll</NavItem>
+              <NavItem eventKey={3}>
+                <i className="fa fa-plus"/> New poll
+              </NavItem>
             </LinkContainer>
             : null
           }
 
           {
-            !AuthenticatedUser ?
+            !authenticatedUser ?
             <LinkContainer to={{pathname: '/signup'}}>
               <NavItem eventKey={6}>Signup</NavItem>
             </LinkContainer>
             : null
           }
           {
-            !AuthenticatedUser ?
+            !authenticatedUser ?
             <LinkContainer to={{pathname: '/login'}}>
               <NavItem eventKey={5}>Login</NavItem>
             </LinkContainer>
@@ -73,3 +76,8 @@ export default class Header extends Component {
     );
   }
 }
+Header.propTypes = {
+  user: PropTypes.object,
+  logout: PropTypes.func,
+  authenticatedUser: PropTypes.object,
+};

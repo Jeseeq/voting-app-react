@@ -12,7 +12,7 @@ function generateToken(user){
   };
 
   token = jwt.sign(u, process.env.JWT_SECRET, {
-    expiresIn: 60 * 60 * 24 // 24 hours
+    expiresIn: '7d'
   });
   return token;
 }

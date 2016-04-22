@@ -6,7 +6,7 @@ import {
 } from '../actions/polls';
 
 import {connect} from 'react-redux';
-import Detail from '../components/Detail';
+import PollDetail from '../components/PollDetail';
 
 
 function mapStateToProps(state, ownProps) {
@@ -34,5 +34,5 @@ const mapDispatchToProps = (dispatch) => {
 const PollDetailContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Detail);
+)(PollDetail);
 export default PollDetailContainer;

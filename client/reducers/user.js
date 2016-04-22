@@ -19,8 +19,6 @@ const INITIAL_STATE = {
   loading: false
 };
 
-
-
 export default function(state = INITIAL_STATE, action) {
   let error;
 

@@ -18,7 +18,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPolls: () => {
-      dispatch(fetchPolls()).then((response) => {
+      dispatch(fetchPolls())
+      .then((response) => {
         !response.error ? dispatch(fetchPollsSuccess(response.payload)) :
                           dispatch(fetchPollsFailure(response.payload));
       });
@@ -27,7 +28,8 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-const PollsListContainer = connect(mapStateToProps,
-                                  mapDispatchToProps)(PollsList);
-
+const PollsListContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PollsList);
 export default PollsListContainer;

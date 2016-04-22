@@ -87,13 +87,12 @@ router.post('/users/signup', function(req, res) {
       user = utils.getCleanUser(user);
 
       res.cookie('auth_token', token, {
-        maxAge: 60*60*24,
+        maxAge: 60 * 60 * 24 * 7 * 1000,    // 7d
         path: '/',
         httpOnly: true
 
       }).json({
         user: user,
-        //token: token
       });
 
     });
@@ -129,12 +128,11 @@ router.post('/users/signin', function(req, res) {
       user = utils.getCleanUser(user);
 
       res.cookie('auth_token', token, {
-        maxAge: 60*60*24,
+        maxAge: 60 * 60 * 24 * 7 * 1000, // 7d
         path: '/',
         httpOnly: true
       }).json({
         user: user,
-        //token: token
       });
 
     });

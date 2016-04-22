@@ -12,7 +12,7 @@ import Header from '../components/Header';
 
 const mapStateToProps = (state) =>{
   return{
-    AuthenticatedUser: state.user.status === 'authenticated' ? state.user.user : null,
+    authenticatedUser: state.user.status === 'authenticated' ? state.user.user : null,
     user: state.user.user
   };
 };
@@ -35,11 +35,8 @@ const mapDispatchToProps = (dispatch) =>{
   };
 };
 
-
 const HeaderContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Header);
-
-
 export default HeaderContainer;

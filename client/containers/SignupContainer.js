@@ -12,7 +12,7 @@ import {
 } from '../actions/validateUserFields';
 
 import {reduxForm} from 'redux-form';
-import SignupForm from '../components/SignupForm';
+import SignupForm from '../components/forms/SignupForm';
 
 
 const validate = (values) =>{

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PollsListContainer from '../containers/PollsListContainer';
 import InfoRow from '../components/layout/InfoRow';
 import InfoHeader from '../components/layout/InfoHeader';
-import s from './home.css';
+import './home.css';
 
 
 export default class Home extends Component {
