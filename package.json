@@ -69,9 +69,7 @@
     "validator": "^5.2.0",
     "webpack": "1.12.12",
     "webpack-dev-middleware": "1.5.1",
-    "webpack-hot-middleware": "2.6.4"
-  },
-  "devDependencies": {
+    "webpack-hot-middleware": "2.6.4",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "font-awesome-loader": "0.0.1",
