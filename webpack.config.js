@@ -52,8 +52,8 @@ module.exports = {
           },
         }
       },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style-loader', 'sass-loader') },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css!postcss') },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass') },
       {
         test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: "url?limit=10000"
