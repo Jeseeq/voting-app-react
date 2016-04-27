@@ -89,3 +89,10 @@ export default class SignupForm extends Component {
     );
   }
 };
+
+SignupForm.propTypes = {
+  fields: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  resetMe: PropTypes.func,
+  submitting: PropTypes.bool
+};

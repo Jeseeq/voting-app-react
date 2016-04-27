@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
-import s from './form.css';
+import './form.css';
 
 
 export default class LoginForm extends Component {
@@ -48,8 +48,6 @@ export default class LoginForm extends Component {
               {username.touched ? username.error : ''}
             </div>
           </div>
-
-
           <div className={`form-group ${password.touched && password.error ? 'has-error' : ''}`}>
             <label htmlFor="password" className="control-label">Password*</label>
             <input
@@ -73,3 +71,9 @@ export default class LoginForm extends Component {
     );
   }
 }
+LoginForm.propTypes = {
+  fields: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  location: PropTypes.object,
+  submitting: PropTypes.bool
+};

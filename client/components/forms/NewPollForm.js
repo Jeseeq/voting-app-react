@@ -1,8 +1,22 @@
 import React, {Component, PropTypes} from 'react';
 import PureInput from '../PureInput';
 export default class NewPoll extends Component {
+
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  componentWillReceiveProps(nextProps){
+    if (nextProps.newPoll.poll && !nextProps.newPoll.loading) {
+      let id = nextProps.newPoll.poll._id;
+      this.context.router.push(`/details/${id}`);
+    }
+  }
   render(){
-    const { fields:{ choices, question }, handleSubmit} = this.props;
+    const {
+      fields:{ choices, question },
+      handleSubmit,
+      submitting
+    } = this.props;
     return (
       <form onSubmit={handleSubmit(this.props.makePoll.bind(this))}>
         <div className={`form-group ${question.touched && question.error ? 'has-error' : ''}`}>
@@ -26,7 +40,7 @@ export default class NewPoll extends Component {
                   <button className="btn btn-danger"
                      type="button"
                      onClick={() => {
-                       choices.removeField(index);  // remove from index
+                       choices.removeField(index);  // remove field from array
                      }}
                   >{String.fromCharCode(160)}<i className="fa fa-trash-o"/>
                   </button>
@@ -48,7 +62,8 @@ export default class NewPoll extends Component {
 
         </div>
       <button type="submit" className="btn btn-primary">
-        Create
+        <i className={submitting? "fa fa-spinner fa-spin":"fa fa-paper-plane"}/>
+         Create
       </button>
     </form>
     );
@@ -59,5 +74,6 @@ export default class NewPoll extends Component {
 NewPoll.propTypes = {
   fields: PropTypes.object,
   handleSubmit: PropTypes.func,
-  makePoll: PropTypes.func
+  makePoll: PropTypes.func,
+  submitting: PropTypes.bool
 };

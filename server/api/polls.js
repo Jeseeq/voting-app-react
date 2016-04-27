@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 var Poll = require('../models/Poll');
-var User = require('../models/User');
 
 // Creacte a new poll
 router.post('/polls', function(req, res) {
@@ -21,7 +20,6 @@ router.post('/polls', function(req, res) {
   }
 
   valid.question = body.question;
-
   var choices = {};
   body.choices.forEach(function(choice) {
     choices[choice] = 0;

@@ -24,20 +24,29 @@ const validate = (values) => {
 
 const mapStateToProps = (state) => {
   return{
+    newPoll: state.polls.newPoll
   };
 };
 
 const validateAndMakePoll = (values, dispatch) =>{
   values.choices = filterChoices(values.choices);
+
   return new Promise(function(resolve, reject) {
     dispatch(createPoll(values))
     .then((response) =>{
-      console.log(response);
+      let data = response.payload.data;
+      if (response.payload.status !== 200){
+        dispatch(createPollFailure(response.payload));
+        reject(data);
+      } else {
+        dispatch(createPollSuccess(response.payload));
+        resolve();
+      }
     });
   });
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {
     makePoll: validateAndMakePoll
   };

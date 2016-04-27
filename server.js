@@ -47,6 +47,7 @@ compiler.plugin('done', function() {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(favicon(__dirname + '/dist/' + 'favicon.ico'));
 
 var authentication = require('./server/middleware/authentication');
 app.use(authentication.decodeToken);
@@ -59,7 +60,6 @@ app.use('/api/', polls);
 app.use('/api/', users);
 app.use('/', express.static(__dirname + '/dist'));
 
-app.use(favicon(__dirname + '/dist/' + 'favicon.ico'));
 app.get('*', function(req, res) {
   res.sendFile(__dirname + '/dist/' + 'index.html');
 });
@@ -70,7 +70,7 @@ app.get('*', function(req, res) {
 
 var http = require('http');
 var server = http.createServer(app);
-server.listen(3000, '0.0.0.0', function(err) {
+server.listen(process.env.PORT || 3000, '0.0.0.0', function(err) {
   if (err) throw err;
 
   var addr = server.address();
